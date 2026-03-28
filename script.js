@@ -2,7 +2,6 @@
 
 // Создаем общую функцию для запуска игры "Отгадай число"
 const guessTheNumber = function () {
-    // ------------
     // Создаем замыкание для получения рандомного числа, которое потом будем отгадывать
 
     let getGuessNumber = function () {
@@ -11,16 +10,6 @@ const guessTheNumber = function () {
         return function () {
             return randomNumber;
         };
-    };
-
-    // Функция проверки на строковое значение
-    const isString = function (str) {
-        for (let i = 0; i < 10; i++) {
-            if (str.includes(String(i)) || str.trim().length === 0) {
-                return false;
-            }
-        }
-        return true;
     };
 
     const isNumber = function (num) {
@@ -32,7 +21,7 @@ const guessTheNumber = function () {
     };
 
     let randomGuessNumber = getGuessNumber();
-    console.log(randomGuessNumber());
+    console.log(`Число, которое мы загадали = ${randomGuessNumber()}`);
 
     // Создаем рекурсию и условия
     const userPlay = function () {
