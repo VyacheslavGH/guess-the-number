@@ -12,11 +12,38 @@ const guessTheNumber = function () {
         };
     };
 
+    const attemptsCounter = function () {
+        let attempts = 10;
+        return function () {
+            return --attempts;
+        };
+    };
+
+    let minusAttempt = attemptsCounter();
+
     const isNumber = function (num) {
         if (isNaN(num)) {
             return true;
         } else {
             return false;
+        }
+    };
+
+    // Запускаем игру еще раз или прощаемся
+    const playAgain = function (boolean) {
+        if (boolean) {
+            return guessTheNumber();
+        } else {
+            return alert("Приходите еще");
+        }
+    };
+
+    // Спрашиваем у пользователя, хочет ли он сыграть еще, когда попытки кончились
+    const attemptsAviable = function (attemptsCount) {
+        if (attemptsCount > 0) {
+            return attemptsCount;
+        } else {
+            return playAgain(confirm("Попытки закончились, хотите сыграть еще?"));
         }
     };
 
@@ -32,7 +59,7 @@ const guessTheNumber = function () {
         }
 
         if (isNumber(userInput)) {
-            alert("Введи число!");
+            alert(`Введи число! Осталось попыток ${attemptsAviable(minusAttempt())}`);
             let answer = confirm("Введите новый вариант");
             if (!answer) {
                 return alert("Игра окончена");
@@ -42,11 +69,12 @@ const guessTheNumber = function () {
         }
 
         if (Number(userInput) === randomGuessNumber()) {
-            return alert("Поздравляю, Вы угадали!!!");
+            alert("Поздравляю, Вы угадали!!!");
+            return playAgain(confirm("Хотели бы сыграть еще?"));
         }
 
         if (Number(userInput) > randomGuessNumber()) {
-            alert("Загаданное число меньше");
+            alert(`Загаданное число меньше, осталось попыток ${attemptsAviable(minusAttempt())}`);
             let answer = confirm("Введите новый вариант");
             if (!answer) {
                 return alert("Игра окончена");
@@ -56,7 +84,7 @@ const guessTheNumber = function () {
         }
 
         if (Number(userInput) < randomGuessNumber()) {
-            alert("Загаданное число больше");
+            alert(`Загаданное число больше, осталось попыток ${attemptsAviable(minusAttempt())}`);
             let answer = confirm("Введите новый вариант");
             if (!answer) {
                 return alert("Игра окончена");
