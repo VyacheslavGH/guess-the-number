@@ -14,10 +14,14 @@ const guessTheNumber = function () {
 
     const isNumber = function (num) {
         if (isNaN(num)) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
+    };
+
+    const gameOver = function () {
+        return alert("Игра окончена");
     };
 
     let randomGuessNumber = getGuessNumber();
@@ -28,14 +32,14 @@ const guessTheNumber = function () {
         let userInput = prompt("Угадай число от 1 до 100", 50);
 
         if (!userInput) {
-            return alert("Игра окончена");
+            return gameOver();
         }
 
-        if (isNumber(userInput)) {
+        if (!isNumber(userInput)) {
             alert("Введи число!");
             let answer = confirm("Введите новый вариант");
             if (!answer) {
-                return alert("Игра окончена");
+                return gameOver();
             } else {
                 userPlay();
             }
@@ -49,7 +53,7 @@ const guessTheNumber = function () {
             alert("Загаданное число меньше");
             let answer = confirm("Введите новый вариант");
             if (!answer) {
-                return alert("Игра окончена");
+                return gameOver();
             } else {
                 userPlay();
             }
@@ -59,7 +63,7 @@ const guessTheNumber = function () {
             alert("Загаданное число больше");
             let answer = confirm("Введите новый вариант");
             if (!answer) {
-                return alert("Игра окончена");
+                return gameOver();
             } else {
                 userPlay();
             }
