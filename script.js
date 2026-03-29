@@ -23,9 +23,9 @@ const guessTheNumber = function () {
 
     const isNumber = function (num) {
         if (isNaN(num)) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     };
 
@@ -59,7 +59,7 @@ const guessTheNumber = function () {
             return playAgain(confirm("Попытки закончились, хотите сыграть еще?"));
         }
 
-        if (isNumber(userInput)) {
+        if (!isNumber(userInput)) {
             alert(`Введи число! Осталось попыток ${countAtt}`);
             let answer = confirm("Введите новый вариант");
             if (!answer) {
